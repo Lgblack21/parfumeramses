@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useCart } from "@/components/providers/cart-provider";
 
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const { totalItems } = useCart();
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -25,15 +23,13 @@ export function Navbar() {
       } backdrop-blur-md`}
     >
       <div className="container-width section-padding flex h-16 items-center justify-between">
-        <Link href="/" className="font-serif text-xl tracking-wide">
+        <Link href="/" className="font-serif text-xl tracking-wide md:text-2xl">
           RAMSES
         </Link>
-        <nav className="flex items-center gap-6 text-sm">
+        <nav className="flex items-center gap-6 text-xs uppercase tracking-[0.18em] md:text-sm">
           <Link href="/about">About</Link>
           <Link href="/products">Collection</Link>
           <Link href="/testimonials">Testimonials</Link>
-          <Link href="/admin">Admin</Link>
-          <Link href="/cart">Cart ({totalItems})</Link>
         </nav>
       </div>
     </header>

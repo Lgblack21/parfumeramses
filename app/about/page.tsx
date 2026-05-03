@@ -2,16 +2,16 @@ import { FadeIn } from "@/components/ui/fade-in";
 
 export default function AboutPage() {
   return (
-    <section className="section-padding py-28">
-      <div className="container-width grid gap-10 md:grid-cols-2">
+    <section className="section-padding py-32 md:py-40">
+      <div className="container-width grid gap-12 md:grid-cols-2">
         <FadeIn>
-          <h1 className="font-serif text-5xl">Our Story</h1>
+          <h1 className="font-serif text-5xl md:text-7xl">Our Story</h1>
         </FadeIn>
         <FadeIn>
-          <p className="text-black/75">
-            Born from a desire to turn memory into scent, RAMSES builds fragrance as an intimate ritual.
-            Every composition is crafted to fit moments of ambition, intimacy, and celebration with a
-            timeless high-luxury sensibility.
+          <p className="text-base leading-8 text-black/75 md:text-lg">
+            RAMSES lahir dari gagasan bahwa parfum bukan sekadar aroma, tetapi ekspresi personal yang
+            meninggalkan memori. Setiap koleksi diracik dengan bahan pilihan untuk menciptakan pengalaman
+            yang elegan, intim, dan berkelas.
           </p>
         </FadeIn>
       </div>

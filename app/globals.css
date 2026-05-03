@@ -6,12 +6,13 @@ html,
 body {
   background-color: #f5f2ed;
   color: #000;
+  scroll-behavior: smooth;
 }
 
 .section-padding {
-  @apply px-6 md:px-12 lg:px-20;
+  @apply px-6 md:px-14 lg:px-24;
 }
 
 .container-width {
-  @apply mx-auto max-w-7xl;
+  @apply mx-auto max-w-[1400px];
 }

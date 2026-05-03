@@ -4,13 +4,21 @@ export type Product = {
   price: number;
   image: string;
   description: string;
+  story: string;
+  longevity: string;
+  projection: string;
+  occasion: string;
+  topNotes: string;
+  middleNotes: string;
+  baseNotes: string;
+  ingredients: string;
+  character: string;
+  targetUser: string;
+  shopeeUrl?: string | null;
+  tiktokUrl?: string | null;
+  isFeatured: boolean;
+  isBestSeller: boolean;
+  isLimitedEdition: boolean;
+  isSignatureCollection: boolean;
   createdAt: string;
-};
-
-export type CartItem = {
-  productId: string;
-  name: string;
-  price: number;
-  image: string;
-  quantity: number;
 };
