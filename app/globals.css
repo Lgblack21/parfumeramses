@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #f5f2ed;
+  color: #000;
+}
+
+.section-padding {
+  @apply px-6 md:px-12 lg:px-20;
+}
+
+.container-width {
+  @apply mx-auto max-w-7xl;
+}
