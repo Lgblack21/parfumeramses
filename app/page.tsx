@@ -19,26 +19,28 @@ export default async function HomePage() {
         style={{ backgroundImage: `url(${featured?.image ?? ""})` }}
       >
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 max-w-4xl px-6 text-center">
+        <div className="relative z-10 max-w-4xl px-4 text-center sm:px-6">
           <p className="mb-6 text-xs uppercase tracking-[0.24em] text-luxury-gold">Maison Ramses</p>
-          <h1 className="font-serif text-5xl leading-tight md:text-7xl">{featured?.name ?? "Essence of Prestige"}</h1>
-          <p className="mx-auto mt-8 max-w-2xl text-base text-luxury-cream/90 md:text-lg">{featured?.story}</p>
+          <h1 className="font-serif text-4xl leading-tight md:text-7xl">{featured?.name ?? "Essence of Prestige"}</h1>
+          <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-luxury-cream/90 md:mt-8 md:max-w-2xl md:text-lg">
+            {featured?.story}
+          </p>
           <Link
             href="/products"
-            className="mt-12 inline-block border border-luxury-gold px-10 py-4 text-xs uppercase tracking-[0.2em] transition duration-300 hover:bg-luxury-gold hover:text-black"
+            className="mt-10 inline-block border border-luxury-gold px-8 py-4 text-xs uppercase tracking-[0.2em] transition duration-300 hover:bg-luxury-gold hover:text-black md:mt-12 md:px-10"
           >
             Explore Collection
           </Link>
         </div>
       </section>
 
-      <section className="section-padding py-32 md:py-40">
-        <div className="container-width grid gap-10 md:grid-cols-2">
+      <section className="section-padding py-16 md:py-40">
+        <div className="container-width grid gap-6 md:gap-10 md:grid-cols-2">
           <FadeIn>
-            <h2 className="font-serif text-5xl leading-tight md:text-6xl">Crafted to Be Remembered</h2>
+            <h2 className="font-serif text-4xl leading-tight md:text-6xl">Crafted to Be Remembered</h2>
           </FadeIn>
           <FadeIn>
-            <p className="max-w-xl text-base leading-8 text-black/70 md:text-lg">
+            <p className="max-w-xl text-sm leading-7 text-black/70 md:text-lg md:leading-8">
               Setiap parfum RAMSES dibangun dengan struktur aroma berlapis untuk menciptakan identitas yang
               elegan, tenang, dan mahal. Dirancang untuk menghadirkan impresi kuat tanpa terasa berlebihan.
             </p>
@@ -56,12 +58,12 @@ export default async function HomePage() {
 function CollectionSection({ title, products }: { title: string; products: Awaited<ReturnType<typeof getProducts>> }) {
   if (!products.length) return null;
   return (
-    <section className="section-padding pb-28 md:pb-36">
+    <section className="section-padding pb-16 md:pb-36">
       <div className="container-width">
-        <FadeIn className="mb-10 md:mb-14">
-          <h2 className="font-serif text-4xl md:text-5xl">{title}</h2>
+        <FadeIn className="mb-8 md:mb-14">
+          <h2 className="font-serif text-3xl md:text-5xl">{title}</h2>
         </FadeIn>
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
             <ProductCard key={product.id} product={{ ...product, createdAt: product.createdAt.toISOString() }} />
           ))}

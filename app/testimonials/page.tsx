@@ -8,13 +8,13 @@ const reviews = [
 
 export default function TestimonialsPage() {
   return (
-    <section className="section-padding py-32 md:py-40">
+    <section className="section-padding py-16 md:py-40">
       <div className="container-width">
-        <h1 className="mb-14 font-serif text-5xl md:text-7xl">Testimonials</h1>
+        <h1 className="mb-8 font-serif text-4xl md:mb-14 md:text-7xl">Testimonials</h1>
         <div className="grid gap-8 md:grid-cols-3">
           {reviews.map((review) => (
             <FadeIn key={review.name} className="space-y-3 border-t border-luxury-gold pt-6">
-              <p className="text-black/80">“{review.text}”</p>
+              <p className="text-sm leading-7 text-black/80 md:text-base">“{review.text}”</p>
               <p className="font-serif text-xl">{review.name}</p>
             </FadeIn>
           ))}

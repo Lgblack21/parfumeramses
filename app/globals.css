@@ -10,7 +10,7 @@ body {
 }
 
 .section-padding {
-  @apply px-6 md:px-14 lg:px-24;
+  @apply px-4 sm:px-6 md:px-14 lg:px-24;
 }
 
 .container-width {

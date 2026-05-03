@@ -8,7 +8,7 @@ import { formatIDR } from "@/lib/currency";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <motion.article whileHover={{ y: -4 }} transition={{ duration: 0.4 }} className="group">
+    <motion.article whileHover={{ y: -4 }} whileTap={{ scale: 0.99 }} transition={{ duration: 0.4 }} className="group">
       <Link href={`/products/${product.id}`} className="block space-y-4">
         <div className="relative aspect-[4/5] overflow-hidden">
           <motion.div whileHover={{ scale: 1.04 }} transition={{ duration: 0.5 }}>
