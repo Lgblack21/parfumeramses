@@ -63,3 +63,8 @@ INSERT INTO "Product" (
   'https://www.tiktok.com/',
   0,0,0,1
 );
+
+INSERT OR REPLACE INTO "SiteSetting" ("key","value") VALUES
+('whatsappNumber', '6281200000000'),
+('defaultShopeeUrl', 'https://shopee.co.id/'),
+('defaultTiktokUrl', 'https://www.tiktok.com/');

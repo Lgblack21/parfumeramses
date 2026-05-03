@@ -2,19 +2,23 @@
 
 import Link from "next/link";
 
-const WHATSAPP_NUMBER = "6281200000000";
-
 export function OrderButtons({
   productName,
+  whatsappNumber,
+  defaultShopeeUrl,
+  defaultTiktokUrl,
   shopeeUrl,
   tiktokUrl
 }: {
   productName: string;
+  whatsappNumber: string;
+  defaultShopeeUrl: string;
+  defaultTiktokUrl: string;
   shopeeUrl?: string | null;
   tiktokUrl?: string | null;
 }) {
   const message = encodeURIComponent(`Halo, saya ingin membeli ${productName}`);
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   return (
     <>
@@ -27,14 +31,14 @@ export function OrderButtons({
           Order via WhatsApp
         </Link>
         <Link
-          href={shopeeUrl || "https://shopee.co.id/"}
+          href={shopeeUrl || defaultShopeeUrl}
           target="_blank"
           className="border border-black/20 px-6 py-3 text-center text-xs uppercase tracking-[0.18em] transition duration-300 hover:border-luxury-gold hover:text-black"
         >
           Beli di Shopee
         </Link>
         <Link
-          href={tiktokUrl || "https://www.tiktok.com/"}
+          href={tiktokUrl || defaultTiktokUrl}
           target="_blank"
           className="border border-black/20 px-6 py-3 text-center text-xs uppercase tracking-[0.18em] transition duration-300 hover:border-luxury-gold hover:text-black"
         >
@@ -53,14 +57,14 @@ export function OrderButtons({
           </Link>
           <div className="grid grid-cols-2 gap-2">
             <Link
-              href={shopeeUrl || "https://shopee.co.id/"}
+              href={shopeeUrl || defaultShopeeUrl}
               target="_blank"
               className="border border-black/20 px-4 py-2.5 text-center text-xs uppercase tracking-[0.14em]"
             >
               Shopee
             </Link>
             <Link
-              href={tiktokUrl || "https://www.tiktok.com/"}
+              href={tiktokUrl || defaultTiktokUrl}
               target="_blank"
               className="border border-black/20 px-4 py-2.5 text-center text-xs uppercase tracking-[0.14em]"
             >

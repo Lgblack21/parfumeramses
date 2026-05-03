@@ -29,6 +29,12 @@ type ProductForm = {
   isSignatureCollection: boolean;
 };
 
+type SettingsForm = {
+  whatsappNumber: string;
+  defaultShopeeUrl: string;
+  defaultTiktokUrl: string;
+};
+
 const initialForm: ProductForm = {
   name: "",
   price: "",
@@ -59,6 +65,11 @@ export default function HiddenAdminPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [form, setForm] = useState<ProductForm>(initialForm);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [settings, setSettings] = useState<SettingsForm>({
+    whatsappNumber: "",
+    defaultShopeeUrl: "",
+    defaultTiktokUrl: ""
+  });
 
   const title = useMemo(() => (editingId ? "Edit Produk" : "Tambah Produk"), [editingId]);
 
@@ -67,9 +78,10 @@ export default function HiddenAdminPage() {
   }, [loggedIn]);
 
   async function load() {
-    const res = await fetch("/api/products");
-    const data = await res.json();
-    setProducts(data);
+    const [productRes, settingsRes] = await Promise.all([fetch("/api/products"), fetch("/api/settings")]);
+    const [productData, settingsData] = await Promise.all([productRes.json(), settingsRes.json()]);
+    setProducts(productData);
+    setSettings(settingsData);
   }
 
   function onLogin(e: FormEvent) {
@@ -118,6 +130,16 @@ export default function HiddenAdminPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  async function onSaveSettings(e: FormEvent) {
+    e.preventDefault();
+    await fetch("/api/settings", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(settings)
+    });
+    alert("Pengaturan link & WA tersimpan.");
+  }
+
   if (!loggedIn) {
     return (
       <section className="section-padding py-32">
@@ -149,6 +171,33 @@ export default function HiddenAdminPage() {
   return (
     <section className="section-padding py-20">
       <div className="container-width space-y-12">
+        <form onSubmit={onSaveSettings} className="grid gap-4 border border-black/10 p-6 md:grid-cols-2">
+          <h2 className="font-serif text-4xl md:col-span-2">Pengaturan Order Global</h2>
+          <Input
+            label="Nomor WhatsApp (format 628...)"
+            value={settings.whatsappNumber}
+            onChange={(value) => setSettings({ ...settings, whatsappNumber: value })}
+            full
+          />
+          <Input
+            label="Default Shopee URL"
+            value={settings.defaultShopeeUrl}
+            onChange={(value) => setSettings({ ...settings, defaultShopeeUrl: value })}
+            full
+          />
+          <Input
+            label="Default TikTok URL"
+            value={settings.defaultTiktokUrl}
+            onChange={(value) => setSettings({ ...settings, defaultTiktokUrl: value })}
+            full
+          />
+          <div className="md:col-span-2">
+            <button className="bg-black px-6 py-3 text-xs uppercase tracking-[0.18em] text-luxury-cream">
+              Simpan Pengaturan
+            </button>
+          </div>
+        </form>
+
         <h1 className="font-serif text-5xl">{title}</h1>
         <form onSubmit={onSubmit} className="grid gap-4 md:grid-cols-2">
           <Input label="Nama" value={form.name} onChange={(value) => setForm({ ...form, name: value })} />

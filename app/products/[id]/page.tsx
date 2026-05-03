@@ -4,12 +4,13 @@ import { formatIDR } from "@/lib/currency";
 import { getProductById } from "@/lib/products";
 import { OrderButtons } from "@/components/ui/order-buttons";
 import { ProductMobileAccordion } from "@/components/ui/product-mobile-accordion";
+import { getSiteSettings } from "@/lib/d1-settings";
 
 export const dynamic = "force-dynamic";
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const product = await getProductById(id);
+  const [product, siteSettings] = await Promise.all([getProductById(id), getSiteSettings()]);
   if (!product) return notFound();
   const detailSections = [
     {
@@ -54,7 +55,14 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <p className="text-sm uppercase tracking-[0.18em] text-black/70">{formatIDR(product.price)}</p>
             <p className="hidden text-base leading-8 text-black/80 sm:block md:text-lg">{product.description}</p>
             <p className="hidden text-base leading-8 text-black/70 sm:block md:text-lg">{product.story}</p>
-            <OrderButtons productName={product.name} shopeeUrl={product.shopeeUrl} tiktokUrl={product.tiktokUrl} />
+            <OrderButtons
+              productName={product.name}
+              shopeeUrl={product.shopeeUrl}
+              tiktokUrl={product.tiktokUrl}
+              whatsappNumber={siteSettings.whatsappNumber}
+              defaultShopeeUrl={siteSettings.defaultShopeeUrl}
+              defaultTiktokUrl={siteSettings.defaultTiktokUrl}
+            />
           </div>
         </div>
 
