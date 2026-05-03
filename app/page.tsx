@@ -65,7 +65,7 @@ function CollectionSection({ title, products }: { title: string; products: Await
         </FadeIn>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
-            <ProductCard key={product.id} product={{ ...product, createdAt: product.createdAt.toISOString() }} />
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>

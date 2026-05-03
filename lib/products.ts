@@ -1,10 +1,9 @@
-import { getPrisma } from "@/lib/prisma";
+import { d1GetProductById, d1GetProducts } from "@/lib/d1-products";
 import { mockProducts } from "@/lib/mock-products";
 
 export async function getProducts() {
   try {
-    const prisma = getPrisma();
-    return prisma.product.findMany({ orderBy: { createdAt: "desc" } });
+    return await d1GetProducts();
   } catch {
     return mockProducts;
   }
@@ -12,8 +11,7 @@ export async function getProducts() {
 
 export async function getProductById(id: string) {
   try {
-    const prisma = getPrisma();
-    return prisma.product.findUnique({ where: { id } });
+    return await d1GetProductById(id);
   } catch {
     return mockProducts.find((item) => item.id === id) ?? null;
   }

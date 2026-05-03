@@ -24,7 +24,7 @@ export const mockProducts = [
     isBestSeller: true,
     isLimitedEdition: false,
     isSignatureCollection: true,
-    createdAt: new Date()
+    createdAt: new Date().toISOString()
   },
   {
     id: "mock-noir-eclat",
@@ -50,6 +50,6 @@ export const mockProducts = [
     isBestSeller: true,
     isLimitedEdition: true,
     isSignatureCollection: false,
-    createdAt: new Date()
+    createdAt: new Date().toISOString()
   }
 ];
